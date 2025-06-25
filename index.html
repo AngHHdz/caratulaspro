@@ -50,7 +50,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
-      font-size: 300px;
+      font-size: 12px;
     }
     table, th {
       border: 1px solid #000;
@@ -70,6 +70,7 @@
 <body>
   <div class="formulario">
     <h2>Generador de Carátulas</h2>
+
     <label>Layout (formato: VIAJE VIN BUQUE por línea):</label>
     <textarea id="layout" rows="6" placeholder="4	3MBAALDS3TM086996	SIRIUS"></textarea>
     
@@ -94,12 +95,31 @@
       <option value="bottom-center">Inferior centro</option>
     </select>
 
+    <label>Tamaño de letra de tabla:</label>
+    <select id="fontSizeSelector">
+      <option value="15">GRANDE COMO LE GUSTA A CHARLY px</option>
+      <option value="16" selected>17 px</option>
+      <option value="17">17 px</option>
+    </select>
+
     <button onclick="generarFormato()">Generar PDF</button>
   </div>
 
   <div id="preview" class="pdf-preview"></div>
 
   <script>
+    // Guardar y cargar tamaño de letra seleccionado
+    document.addEventListener("DOMContentLoaded", () => {
+      const selector = document.getElementById("fontSizeSelector");
+      const savedFontSize = localStorage.getItem("fontSizeVin");
+      if (savedFontSize) {
+        selector.value = savedFontSize;
+      }
+      selector.addEventListener("change", () => {
+        localStorage.setItem("fontSizeVin", selector.value);
+      });
+    });
+
     function obtenerDealer(modelo) {
       switch (modelo) {
         case 'LAND ROVER': return 'LAN01';
@@ -114,6 +134,7 @@
       const layoutTexto = document.getElementById("layout").value.trim();
       const modelo = document.getElementById("modelo").value;
       const selloFile = document.getElementById("selloInput").files[0];
+      const fontSize = document.getElementById("fontSizeSelector").value + "px";
 
       if (!layoutTexto || !modelo || !selloFile)
         return alert("Completa todos los campos y sube el sello");
@@ -162,8 +183,15 @@
         let filas = '';
         data.forEach(({ vin, buque }) => {
           filas += `<tr>
-            <td>${viaje}</td><td>${buque}</td><td>${vin}</td><td>-</td>
-            <td>-</td><td>${dealer}</td><td>VARIOS</td><td>${modelo}</td><td></td>
+            <td style="font-size:${fontSize};">${viaje}</td>
+            <td style="font-size:${fontSize};">${buque}</td>
+            <td style="font-size:${fontSize};">${vin}</td>
+            <td style="font-size:${fontSize};">-</td>
+            <td style="font-size:${fontSize};">-</td>
+            <td style="font-size:${fontSize};">${dealer}</td>
+            <td style="font-size:${fontSize};">VARIOS</td>
+            <td style="font-size:${fontSize};">${modelo}</td>
+            <td></td>
           </tr>`;
         });
 
