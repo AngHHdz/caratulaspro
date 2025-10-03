@@ -98,7 +98,7 @@
     <label>Tamaño de letra de tabla:</label>
     <select id="fontSizeSelector">
       <option value="15">GRANDE COMO LE GUSTA A CHARLY px</option>
-      <option value="16" selected>17 px</option>
+      <option value="16" selected>16 px</option>
       <option value="17">17 px</option>
     </select>
 
@@ -204,6 +204,51 @@
             ${filas}
           </table>`;
 
+        // tabla pequeña en esquina inferior derecha
+        const tablaMini = `
+          <table style="font-size:12px; border:1px solid #000; border-collapse:collapse; width:520px; position:absolute; bottom:1px; right:60px; background:#fff;">
+            <tr>
+              <th>VIN FISICO (VIN PLATE)</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+            </tr>
+	    <tr>
+              <th>VIN CARATULA</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+	</tr>
+            <tr>
+              <th>MALETIN</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+            </tr>
+	    <tr>
+              <th>LLAVES</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+              <th style="border:1px solid #000;">ㅤㅤㅤ</th>
+	</tr>
+         </table>`;
+
         const contenido = `
           <div class="hoja" id="hoja_${viaje}">
             <img class="logo" src="${logoDataURL}" />
@@ -235,6 +280,7 @@
                 <td style="text-align:center;">NOMBRE Y FIRMA</td>
               </tr>
             </table>
+            ${tablaMini}
           </div>`;
 
         const temp = document.createElement('div');
